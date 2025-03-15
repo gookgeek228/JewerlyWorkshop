@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:vm="using:JewerlyWorkshop.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="JewerlyWorkshop.AuthView"
+			 x:DataType="vm:AuthViewModel">
+
+	<Grid>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="600">
+			
+			<TextBlock Text="Авторизация" HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,20"></TextBlock>
+			<TextBlock Margin="0,0,0,5" FontSize="15">Логин</TextBlock>
+			<TextBox Text="{Binding Login}" Watermark="Введите логин" Margin="0,0,0,10" Height="50" VerticalContentAlignment="Center" CornerRadius="10" BorderThickness="2"></TextBox>
+			<TextBlock Margin="0,0,0,5" FontSize="15">Пароль</TextBlock>
+			<TextBox Text="{Binding Password}" Watermark="Введите пароль" Margin="0,0,0,20" Height="50" VerticalContentAlignment="Center" CornerRadius="10" PasswordChar="*" BorderThickness="2"></TextBox>
+
+			<Image Source="{Binding CaptchaImage}" Width="250" Height="100" Margin="0,0,0,10"/>
+			<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10" Margin="0,0,0,20">
+				<Button Content="Обновить" Command="{Binding GenerateCaptchaCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="100" Height="40" CornerRadius="10" HorizontalAlignment="Center"></Button>
+				<TextBox Text="{Binding UserInput, Mode=TwoWay}" Watermark="Капча"  Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CornerRadius="10" Width="100" BorderThickness="2"></TextBox>
+			</StackPanel>
+			<TextBlock Text="{Binding Message}" HorizontalAlignment="Center" Foreground="Black" Margin="0,0,0,20"></TextBlock>
+			
+			<Button Content="Войти" Command="{Binding Authorization}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="160" Height="50" CornerRadius="10" Margin="0,0,0,20"></Button>
+
+		</StackPanel>
+
+	</Grid>
+	
+</UserControl>

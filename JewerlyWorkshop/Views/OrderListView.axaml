@@ -1,0 +1,78 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:vm="using:JewerlyWorkshop.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="JewerlyWorkshop.OrderListView"
+			 x:DataType="vm:OrderListViewModel">
+
+	<Grid>
+		
+		<Grid.RowDefinitions>
+			<RowDefinition Height="80"/>
+			<RowDefinition Height="400"/>
+			<RowDefinition Height="60"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0">
+			<TextBlock Text="Заказы" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+
+			<StackPanel Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
+				<TextBox Watermark="Поиск" Text="{Binding TextFind, Mode=TwoWay}" Width="300" Height="40" BorderThickness="2" CornerRadius="10" VerticalContentAlignment="Center"></TextBox>
+
+				<ComboBox SelectedItem="{Binding SelectedSortOrder}" BorderThickness="2" VerticalAlignment="Center">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+					<ComboBox.Items>
+						<x:String>Новые</x:String>
+						<x:String>Старые</x:String>
+					</ComboBox.Items>
+				</ComboBox>
+
+				<ComboBox SelectedItem="{Binding SelectedSortParametr}" BorderThickness="2" VerticalAlignment="Center">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+					<ComboBox.Items>
+						<x:String>Все</x:String>
+						<x:String>В работе</x:String>
+						<x:String>Завершен</x:String>
+					</ComboBox.Items>
+				</ComboBox>
+			</StackPanel>
+
+		</StackPanel>
+
+		<ListBox Grid.Row="1" ItemsSource="{Binding Orders}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Vertical">
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding IdOrder, StringFormat= Заказ номер {0}}"></TextBlock>
+							<TextBlock Text="{Binding Status, StringFormat=Статус: {0}}" HorizontalAlignment=""></TextBlock>
+						</StackPanel>
+						<TextBlock Text="{Binding ServiceName}" Margin="0,0,10,0"></TextBlock>
+						<TextBlock Text="{Binding IdMasterNavigation.Fio, StringFormat=Мастер: {0}}"></TextBlock>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding OrderDate}"></TextBlock>
+							<TextBlock Text="{Binding Cost, StringFormat=Стоимость: {0}}"></TextBlock>
+						</StackPanel>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="20" VerticalAlignment="Center" Margin="20" >
+			<Button Content="Назад" Command="{Binding GoBack}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="140" Height="40" CornerRadius="10"></Button>
+			<Button Content="Добавить заказ" Command="{Binding AddOrder}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="140" Height="40" CornerRadius="10"></Button>
+		</StackPanel>
+		
+	</Grid>
+	
+</UserControl>
