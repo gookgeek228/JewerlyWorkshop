@@ -2,8 +2,10 @@
 using CommunityToolkit.Mvvm.Input;
 using JewerlyWorkshop.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace JewerlyWorkshop.ViewModels
@@ -23,6 +25,9 @@ namespace JewerlyWorkshop.ViewModels
         private int? cost;
 
         [ObservableProperty]
+        private Material selectedMaterial;
+
+        [ObservableProperty]
         private Service selectedService;
 
         [ObservableProperty]
@@ -33,6 +38,27 @@ namespace JewerlyWorkshop.ViewModels
 
         [ObservableProperty]
         private Jevel selectedJevel;
+
+        [ObservableProperty]
+        private string clientFio;
+
+        [ObservableProperty]
+        private string phone;
+
+        [ObservableProperty]
+        private string jevelName;
+
+        [ObservableProperty]
+        private string jevelType;
+
+        [ObservableProperty]
+        private int? weight;
+
+        [ObservableProperty]
+        private List<JevelType> jevelTypes;
+
+        [ObservableProperty]
+        private List<Material> materials;
 
         [ObservableProperty]
         private List<Master> masters;
@@ -68,6 +94,8 @@ namespace JewerlyWorkshop.ViewModels
 
         private void LoadData()
         {
+            materials = Db.Materials.ToList();
+            jevelTypes = Db.JevelTypes.ToList();
             services = Db.Services.ToList();
             masters = Db.Masters.ToList();
             clients = Db.Clients.ToList();
@@ -104,6 +132,9 @@ namespace JewerlyWorkshop.ViewModels
                 SelectedClient = null;
                 SelectedJevel = null;
                 SelectedService = null;
+
+                Message = "Заказ успешно сохранен!";
+                LoadData();
             }
             catch (DbUpdateException ex)
             {
@@ -111,6 +142,61 @@ namespace JewerlyWorkshop.ViewModels
                 Message = $"Ошибка при сохранении заказа: {ex.InnerException?.Message ?? ex.Message}";
             }
 
+        }
+
+        [RelayCommand]
+        private void SaveJevel()
+        {
+            try
+            {
+                var newJevel = new Jevel
+                {
+                    JevelName = JevelName,
+                    JevelType = JevelType,
+                    IdMaterial = SelectedMaterial?.IdMaterial ?? 0,
+                    Weight = Weight,
+                };
+
+                JevelName = string.Empty;
+                JevelType = string.Empty;
+                SelectedMaterial = null;
+                Weight = null;
+
+                Message = "Изделие успешно сохранено!";
+                LoadData();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Обработка ошибок базы данных
+                Message = $"Ошибка при сохранении изделия: {ex.InnerException?.Message ?? ex.Message}";
+            }
+        }
+
+        [RelayCommand]
+        private void SaveClient()
+        {
+            try 
+            {
+                var newClient = new Client
+                {
+                    Fio = ClientFio,
+                    Phone = Phone,
+                };
+
+                Db.Clients.Add(newClient);
+                Db.SaveChanges();
+
+                ClientFio = string.Empty;
+                Phone = string.Empty;
+
+                Message = "Клиент успешно сохранен!";
+                LoadData();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Обработка ошибок базы данных
+                Message = $"Ошибка при сохранении клиента: {ex.InnerException?.Message ?? ex.Message}";
+            }
         }
     }
 }

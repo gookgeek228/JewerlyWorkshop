@@ -32,18 +32,20 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 			
 			<TextBlock Text="ФИО клиента" Grid.Row="0"/>
-			<TextBox Text=""
+			<TextBox Text="{Binding ClientFio}"
                      Grid.Row="1"
                      HorizontalAlignment="Stretch"/>
 
 			<TextBlock Text="Номер телефона" Grid.Row="2"/>
-			<TextBox Text=""
+			<TextBox Text="{Binding Phone}"
                      Grid.Row="3"
                      HorizontalAlignment="Stretch"/>
 			
+			<Button Grid.Row="5" Content="Сохранить" Command="{Binding SaveClientCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="140" Height="40" CornerRadius="10" Margin="0,20,0,0"></Button>
 		</Grid>
 
 		<!-- Панель добавления заказа -->
@@ -138,7 +140,7 @@
                      Grid.Row="13"
                      HorizontalAlignment="Stretch"/>
 
-			<TextBlock Text="{Binding Message}" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" TextWrapping="Wrap" Margin="0,0,0,20"></TextBlock>
+			<TextBlock Text="{Binding Message}" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" TextWrapping="Wrap" Margin="0,0,0,20"></TextBlock>
 
 		</Grid>
 
@@ -154,46 +156,48 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 
 			<TextBlock Text="Название изделия" Grid.Row="0"/>
-			<TextBox Text=""
+			<TextBox Text="{Binding JevelName}"
                      Grid.Row="1"
                      HorizontalAlignment="Stretch"/>
 
 			<TextBlock Text="Тип изделия" Grid.Row="2"/>
-			<ComboBox ItemsSource="{Binding Masters}"
-                      SelectedItem=""
+			<ComboBox ItemsSource="{Binding JevelTypes}"
+                      SelectedItem="{Binding JevelType}"
                       Grid.Row="3"
                       HorizontalAlignment="Stretch">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text=""/>
+							<TextBlock Text="{Binding JevelType1}"/>
 						</StackPanel>
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
 
 			<TextBlock Text="Материал" Grid.Row="4"/>
-			<ComboBox ItemsSource="{Binding Masters}"
-                      SelectedItem=""
+			<ComboBox ItemsSource="{Binding Materials}"
+                      SelectedItem="{Binding SelectedMaterial}"
                       Grid.Row="5"
                       HorizontalAlignment="Stretch">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text=""/>
+							<TextBlock Text="{Binding MaterialName}"/>
 						</StackPanel>
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
 
 			<TextBlock Text="Вес" Grid.Row="6"/>
-			<TextBox Text=""
+			<TextBox Text="{Binding Weight}"
                      Grid.Row="7"
                      HorizontalAlignment="Stretch"/>
 
+			<Button Grid.Row="8" Content="Сохранить" Command="{Binding SaveJevelCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="140" Height="40" CornerRadius="10" Margin="0,20,0,0"></Button>
 		</Grid>
 
 		<StackPanel Grid.Row="2" Orientation="Horizontal">
