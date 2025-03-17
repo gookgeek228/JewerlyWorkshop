@@ -48,22 +48,49 @@
 			</StackPanel>
 
 		</StackPanel>
-
+		
 		<ListBox Grid.Row="1" ItemsSource="{Binding Orders}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<StackPanel Orientation="Vertical">
-						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="{Binding IdOrder, StringFormat= Заказ номер {0}}"></TextBlock>
-							<TextBlock Text="{Binding Status, StringFormat=Статус: {0}}" HorizontalAlignment=""></TextBlock>
-						</StackPanel>
-						<TextBlock Text="{Binding ServiceName}" Margin="0,0,10,0"></TextBlock>
-						<TextBlock Text="{Binding IdMasterNavigation.Fio, StringFormat=Мастер: {0}}"></TextBlock>
-						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="{Binding OrderDate}"></TextBlock>
-							<TextBlock Text="{Binding Cost, StringFormat=Стоимость: {0}}"></TextBlock>
-						</StackPanel>
-					</StackPanel>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+
+						<!-- Заказ номер -->
+						<TextBlock Text="{Binding IdOrder, StringFormat=Заказ номер {0}}" Grid.Row="0" Grid.Column="0" />
+
+						<!-- Статус -->
+						<TextBlock Text="{Binding Status, StringFormat=Статус: {0}}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" />
+
+						<!-- Название услуги -->
+						<TextBlock Text="{Binding ServiceName}" Grid.Row="1" Grid.Column="0" Margin="0,0,10,0" />
+
+						<!-- Клиент -->
+						<TextBlock Text="{Binding IdClientNavigation.Fio, StringFormat=Клиент: {0}}" Grid.Row="2" Grid.Column="0" />
+
+						<!-- Мастер -->
+						<TextBlock Text="{Binding IdMasterNavigation.Fio, StringFormat=Мастер: {0}}" Grid.Row="3" Grid.Column="0" />
+
+						<!-- Изделие -->
+						<TextBlock Text="{Binding IdJevelNavigation.IdJevel, StringFormat=Изделие: {0}}" Grid.Row="4" Grid.Column="0" />
+
+						<!-- Дата заказа -->
+						<TextBlock Text="{Binding OrderDate}" Grid.Row="5" Grid.Column="0" />
+
+						<!-- Стоимость -->
+						<TextBlock Text="{Binding Cost, StringFormat=Стоимость: {0}}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" />
+					</Grid>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>

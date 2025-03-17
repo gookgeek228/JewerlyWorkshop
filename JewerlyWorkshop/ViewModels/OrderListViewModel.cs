@@ -21,7 +21,11 @@ namespace JewerlyWorkshop.ViewModels
 
         public OrderListViewModel()
         {
-            orders = Db.Orders.Include(o => o.IdMasterNavigation).ToList();
+            orders = Db.Orders
+                .Include(o => o.IdMasterNavigation)
+                .Include(o => o.IdClientNavigation)
+                .Include(o => o.IdJevelNavigation)
+                .ToList();
             orders0 = orders;
         }
 
@@ -34,7 +38,7 @@ namespace JewerlyWorkshop.ViewModels
         public void AddOrder()
         {
             MainWindowViewModel.Instance.PreviousPage = MainWindowViewModel.Instance.PageSwitcher?.GetType().Name;
-            MainWindowViewModel.Instance.PageSwitcher = new AddMasterView();
+            MainWindowViewModel.Instance.PageSwitcher = new AddOrderView();
         }
 
         public void ApplyFilters()

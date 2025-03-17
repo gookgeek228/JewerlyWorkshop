@@ -7,4 +7,93 @@
              x:Class="JewerlyWorkshop.MasterListView"
 			 x:DataType="vm:MasterListViewModel">
 
+	<Grid>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="80"/>
+			<RowDefinition Height="400"/>
+			<RowDefinition Height="60"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0">
+			<TextBlock Text="Мастера" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+
+			<StackPanel Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
+				<TextBox Watermark="Поиск" Text="{Binding TextFind, Mode=TwoWay}" Width="300" Height="40" BorderThickness="2" CornerRadius="10" VerticalContentAlignment="Center"></TextBox>
+
+				<ComboBox SelectedItem="{Binding SelectedSortOrder}" BorderThickness="2" VerticalAlignment="Center">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+					<ComboBox.Items>
+						<x:String>Новые</x:String>
+						<x:String>Старые</x:String>
+					</ComboBox.Items>
+				</ComboBox>
+
+				<ComboBox SelectedItem="{Binding SelectedSortParametr}" BorderThickness="2" VerticalAlignment="Center">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+					<ComboBox.Items>
+						<x:String>Все</x:String>
+						<x:String>В работе</x:String>
+						<x:String>Завершен</x:String>
+					</ComboBox.Items>
+				</ComboBox>
+			</StackPanel>
+
+		</StackPanel>
+
+		<ListBox Grid.Row="1" ItemsSource="{Binding Masters}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+
+						<!-- Мастер -->
+						<TextBlock Text="{Binding Fio}" Grid.Row="0" Grid.Column="0" />
+
+						<!-- Номер мастера -->
+						<TextBlock Text="{Binding IdMaster, StringFormat=Номер мастера: {0}}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" />
+
+						<!-- Телефон -->
+						<TextBlock Text="{Binding Phone}" Grid.Row="1" Grid.Column="0" Margin="0,0,0,10" />
+
+						<!-- Описание -->
+						<TextBlock Text="{Binding Description}" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap"  Margin="0,0,0,10"/>
+
+						<!-- Дата начала работы -->
+						<TextBlock Text="{Binding StartDate, StringFormat=Дата начала работы: {0}}" Grid.Row="3" Grid.Column="0" />
+
+						<!-- Дата увольнения -->
+						<TextBlock Text="{Binding DismissialDate, StringFormat=Дата увольнения: {0}}" Grid.Row="4" Grid.Column="0" />
+
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="20" VerticalAlignment="Center" Margin="20" >
+			<Button Content="Назад" Command="{Binding GoBack}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="160" Height="40" CornerRadius="10"></Button>
+			<Button Content="Добавить Мастера" Command="{Binding AddMaster}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="160" Height="40" CornerRadius="10"></Button>
+		</StackPanel>
+
+	</Grid>
 </UserControl>

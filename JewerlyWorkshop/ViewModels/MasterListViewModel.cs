@@ -22,6 +22,18 @@ namespace JewerlyWorkshop.ViewModels
             masters0 = masters;
         }
 
+        public void GoBack()
+        {
+            MainWindowViewModel.Instance.PreviousPage = MainWindowViewModel.Instance.PageSwitcher?.GetType().Name;
+            MainWindowViewModel.Instance.PageSwitcher = new MainMenuView();
+        }
+
+        public void AddMaster()
+        {
+            MainWindowViewModel.Instance.PreviousPage = MainWindowViewModel.Instance.PageSwitcher?.GetType().Name;
+            MainWindowViewModel.Instance.PageSwitcher = new AddMasterView();
+        }
+
         public void ApplyFilters()
         {
             masters = masters0;
