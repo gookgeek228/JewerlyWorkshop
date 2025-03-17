@@ -1,11 +1,207 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-			 xmlns:vm="using:JewerlyWorkshop.ViewModels"
+             xmlns:vm="using:JewerlyWorkshop.ViewModels"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="JewerlyWorkshop.AddOrderView"
-			 x:DataType="vm:AddOrderViewModel">
+             x:DataType="vm:AddOrderViewModel">
 
-	
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="40"/>
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<TextBlock Grid.Row="0" Text="Клиент" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+		<TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Добавление заказа" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+		<TextBlock Grid.Row="0" Grid.Column="2" Text="Изделия" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+
+		<!-- Панель ввода клиента -->
+		<Grid Grid.Row="1" Grid.Column="0" Margin="20">
+			
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			
+			<TextBlock Text="ФИО клиента" Grid.Row="0"/>
+			<TextBox Text=""
+                     Grid.Row="1"
+                     HorizontalAlignment="Stretch"/>
+
+			<TextBlock Text="Номер телефона" Grid.Row="2"/>
+			<TextBox Text=""
+                     Grid.Row="3"
+                     HorizontalAlignment="Stretch"/>
+			
+		</Grid>
+
+		<!-- Панель добавления заказа -->
+		<Grid Grid.Row="1" Grid.Column="1" Margin="20">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<!-- Название услуги -->
+			<TextBlock Text="Название услуги" Grid.Row="0"/>
+			<ComboBox ItemsSource="{Binding Services}"
+                      SelectedItem="{Binding SelectedService}"
+                      Grid.Row="1"
+                      HorizontalAlignment="Stretch">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding ServiceName}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<!-- Дата заказа -->
+			<TextBlock Text="Дата заказа" Grid.Row="2"/>
+			<DatePicker SelectedDate="{Binding DateTimeOffset}"
+                        Grid.Row="3"
+                        HorizontalAlignment="Stretch"/>
+
+			<!-- Клиент -->
+			<TextBlock Text="Клиент" Grid.Row="6"/>
+			<ComboBox ItemsSource="{Binding Clients}"
+                      SelectedItem="{Binding SelectedClient}"
+                      Grid.Row="7"
+                      HorizontalAlignment="Stretch">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding IdClient}" Margin="0,0,5,0"/>
+							<TextBlock Text="{Binding Fio}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<!-- Изделие -->
+			<TextBlock Text="Изделие" Grid.Row="8"/>
+			<ComboBox ItemsSource="{Binding Jevels}"
+                      SelectedItem="{Binding SelectedJevel}"
+                      Grid.Row="9"
+                      HorizontalAlignment="Stretch">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding IdJevel}" Margin="0,0,5,0"/>
+							<TextBlock Text="{Binding JevelName}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<!-- Мастер -->
+			<TextBlock Text="Мастер" Grid.Row="10"/>
+			<ComboBox ItemsSource="{Binding Masters}"
+                      SelectedItem="{Binding SelectedMaster}"
+                      Grid.Row="11"
+                      HorizontalAlignment="Stretch">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Fio}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<!-- Стоимость -->
+			<TextBlock Text="Стоимость" Grid.Row="12"/>
+			<TextBox Text="{Binding Cost}"
+                     Grid.Row="13"
+                     HorizontalAlignment="Stretch"/>
+
+			<TextBlock Text="{Binding Message}" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" TextWrapping="Wrap" Margin="0,0,0,20"></TextBlock>
+
+		</Grid>
+
+		<!-- Панель добавления изделия -->
+		<Grid Grid.Row="1" Grid.Column="2" Margin="20">
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<TextBlock Text="Название изделия" Grid.Row="0"/>
+			<TextBox Text=""
+                     Grid.Row="1"
+                     HorizontalAlignment="Stretch"/>
+
+			<TextBlock Text="Тип изделия" Grid.Row="2"/>
+			<ComboBox ItemsSource="{Binding Masters}"
+                      SelectedItem=""
+                      Grid.Row="3"
+                      HorizontalAlignment="Stretch">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text=""/>
+						</StackPanel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock Text="Материал" Grid.Row="4"/>
+			<ComboBox ItemsSource="{Binding Masters}"
+                      SelectedItem=""
+                      Grid.Row="5"
+                      HorizontalAlignment="Stretch">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text=""/>
+						</StackPanel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock Text="Вес" Grid.Row="6"/>
+			<TextBox Text=""
+                     Grid.Row="7"
+                     HorizontalAlignment="Stretch"/>
+
+		</Grid>
+
+		<StackPanel Grid.Row="2" Orientation="Horizontal">
+			
+			<Button Content="Назад" Command="{Binding GoBack}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="140" Height="40" CornerRadius="10"></Button>
+			<Button Content="Добавить заказ" Command="{Binding SaveOrderCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="140" Height="40" CornerRadius="10"></Button>
+			
+		</StackPanel>
+		
+	</Grid>
 </UserControl>
