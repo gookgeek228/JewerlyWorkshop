@@ -13,7 +13,6 @@ namespace JewerlyWorkshop.ViewModels
         [ObservableProperty] List<Master> masters;
         [ObservableProperty] List<Master> masters0;
         [ObservableProperty] string textFind;
-        [ObservableProperty] string selectedSortOrder;
         [ObservableProperty] string selectedSortParametr;
 
         public MasterListViewModel()
@@ -43,9 +42,23 @@ namespace JewerlyWorkshop.ViewModels
                 Masters = Masters.Where(x => x.Fio.Contains(textFind, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
+            if (selectedSortParametr == "Штатные")
+            {
+                Masters = Masters.Where(x=>x.DismissialDate == null).ToList();
+            }
+            else if (selectedSortParametr =="Уволенные")
+            {
+                Masters = Masters.Where(x=>x.DismissialDate != null).ToList();
+            }
+
         }
 
         partial void OnTextFindChanged(string value)
+        {
+            ApplyFilters();
+        }
+
+        partial void OnSelectedSortParametrChanged(string value)
         {
             ApplyFilters();
         }

@@ -21,18 +21,6 @@
 			<StackPanel Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
 				<TextBox Watermark="Поиск" Text="{Binding TextFind, Mode=TwoWay}" Width="300" Height="40" BorderThickness="2" CornerRadius="10" VerticalContentAlignment="Center"></TextBox>
 
-				<ComboBox SelectedItem="{Binding SelectedSortOrder}" BorderThickness="2" VerticalAlignment="Center">
-					<ComboBox.ItemTemplate>
-						<DataTemplate>
-							<TextBlock Text="{Binding}"/>
-						</DataTemplate>
-					</ComboBox.ItemTemplate>
-					<ComboBox.Items>
-						<x:String>Новые</x:String>
-						<x:String>Старые</x:String>
-					</ComboBox.Items>
-				</ComboBox>
-
 				<ComboBox SelectedItem="{Binding SelectedSortParametr}" BorderThickness="2" VerticalAlignment="Center">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
@@ -41,8 +29,8 @@
 					</ComboBox.ItemTemplate>
 					<ComboBox.Items>
 						<x:String>Все</x:String>
-						<x:String>В работе</x:String>
-						<x:String>Завершен</x:String>
+						<x:String>Штатные</x:String>
+						<x:String>Уволенные</x:String>
 					</ComboBox.Items>
 				</ComboBox>
 			</StackPanel>
