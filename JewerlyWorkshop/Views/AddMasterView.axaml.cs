@@ -9,7 +9,7 @@ public partial class AddMasterView : UserControl
 {
     public AddMasterView()
     {
-        DataContext = new AddOrderViewModel();
+        DataContext = new AddMasterViewModel();
         InitializeComponent();
     }
 }

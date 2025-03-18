@@ -46,7 +46,7 @@ namespace JewerlyWorkshop.ViewModels
                     else if (Db.Users.FirstOrDefault(x => x.Password == password && x.Login == login && x.IdRole == 2) != null)
                     {
                         //Менеджер
-                        MainWindowViewModel.Instance.loginedUser = Db.Users.Include(x => x.IdRole).FirstOrDefault(x => x.Password == password && x.Login == login);
+                        MainWindowViewModel.Instance.loginedUser = Db.Users.FirstOrDefault(x => x.Password == password && x.Login == login);
                         MainWindowViewModel.Instance.PreviousPage = MainWindowViewModel.Instance.PageSwitcher?.GetType().Name;
                         MainWindowViewModel.Instance.PageSwitcher = new MainMenuView();
                     }

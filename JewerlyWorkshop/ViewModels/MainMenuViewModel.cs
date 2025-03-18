@@ -12,6 +12,7 @@ namespace JewerlyWorkshop.ViewModels
     {
         [ObservableProperty] private string username;
         [ObservableProperty] private User user = MainWindowViewModel.Instance.loginedUser;
+        [ObservableProperty] private string message;
 
         public MainMenuViewModel()
         {
@@ -21,10 +22,21 @@ namespace JewerlyWorkshop.ViewModels
             }
         }
 
+
+
         public void GoToMasters()
         {
-            MainWindowViewModel.Instance.PreviousPage = MainWindowViewModel.Instance.PageSwitcher?.GetType().Name;
-            MainWindowViewModel.Instance.PageSwitcher = new MasterListView();
+            if (User.IdRole == 1)
+            {
+                MainWindowViewModel.Instance.PreviousPage = MainWindowViewModel.Instance.PageSwitcher?.GetType().Name;
+                MainWindowViewModel.Instance.PageSwitcher = new MasterListView();
+            }
+            else
+            {
+                Message = "Нет доступа. Обратитесь к администратору";
+                return;
+            }
+            
         }
 
         public void GoToOrders()

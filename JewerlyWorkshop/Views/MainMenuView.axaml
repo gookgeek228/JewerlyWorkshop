@@ -32,7 +32,7 @@
 			
 			<Button Content="Заказы" Command="{Binding GoToOrders}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="240" Height="60" CornerRadius="10" HorizontalAlignment="Center"></Button>
 			<Button Content="Мастера" Command="{Binding GoToMasters}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="240" Height="60" CornerRadius="10" HorizontalAlignment="Center"></Button>
-
+			<TextBlock Text="{Binding Message}" HorizontalAlignment="Center" Foreground="Black" Margin="0,0,0,20"></TextBlock>
 		</StackPanel>
 
 	</Grid>
