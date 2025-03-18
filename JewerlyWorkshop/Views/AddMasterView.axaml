@@ -7,4 +7,74 @@
              x:Class="JewerlyWorkshop.AddMasterView"
 			 x:DataType="vm:AddMasterViewModel">
 
+	<UserControl.Styles>
+		<Style Selector="TextBox">
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Padding" Value="5"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="BorderBrush" Value="#CCCCCC"/>
+			<Setter Property="Foreground" Value="Black"/>
+		</Style>
+
+		<Style Selector="Button">
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Padding" Value="10"/>
+			<Setter Property="Background" Value="CornflowerBlue"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="0,10,0,0"/>
+		</Style>
+
+		<Style Selector="ComboBox">
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Padding" Value="5"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="BorderBrush" Value="#CCCCCC"/>
+			<Setter Property="Foreground" Value="Black"/>
+		</Style>
+
+		<Style Selector="TextBlock">
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="Margin" Value="0,5,0,5"/>
+		</Style>
+	</UserControl.Styles>
+
+	<Grid Background="#F5F5F5">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="40"/>
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Добавление мастера" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
+
+		<!-- Панель добавления мастера -->
+		<Border Grid.Row="1" Margin="20" Background="White" CornerRadius="10" Width="400"  BoxShadow="2 2 5 #888888">
+			<StackPanel Margin="10">
+				<TextBlock Text="ФИО мастера"/>
+				<TextBox Text="{Binding MasterFio}"/>
+
+				<TextBlock Text="Телефон"/>
+				<TextBox Text="{Binding MasterPhone}"/>
+
+				<TextBlock Text="Описание"/>
+				<TextBox Text="{Binding Description}"/>
+
+				<TextBlock Text="Дата начала работы"/>
+				<DatePicker SelectedDate="{Binding DateTimeOffset}"/>
+
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="60">
+					<Button Content="Назад" Command="{Binding GoBack}" Width="160" Margin=""/>
+					<Button Content="Добавить мастера" Command="{Binding SaveMasterCommand}" Width="160"/>
+				</StackPanel>
+			</StackPanel>
+		</Border>
+		
+	</Grid>
 </UserControl>

@@ -25,6 +25,9 @@ namespace JewerlyWorkshop.ViewModels
         private int? cost;
 
         [ObservableProperty]
+        private JevelType selectedJevelType;
+
+        [ObservableProperty]
         private Material selectedMaterial;
 
         [ObservableProperty]
@@ -149,17 +152,26 @@ namespace JewerlyWorkshop.ViewModels
         {
             try
             {
+                if (selectedMaterial == null)
+                {
+                    Message = "Материал не выбран!";
+                    return;
+                }
+
                 var newJevel = new Jevel
                 {
                     JevelName = JevelName,
-                    JevelType = JevelType,
-                    IdMaterial = SelectedMaterial?.IdMaterial ?? 0,
+                    JevelType = SelectedJevelType.JevelType1,
+                    IdMaterial = selectedMaterial?.IdMaterial ?? 0,
                     Weight = Weight,
                 };
 
+                Db.Jevels.Add(newJevel);
+                Db.SaveChanges();
+
                 JevelName = string.Empty;
                 JevelType = string.Empty;
-                SelectedMaterial = null;
+                selectedMaterial = null;
                 Weight = null;
 
                 Message = "Изделие успешно сохранено!";
@@ -177,6 +189,12 @@ namespace JewerlyWorkshop.ViewModels
         {
             try 
             {
+                if (ClientFio == null)
+                {
+                    Message = "Введите имя клиента!";
+                    return;
+                }
+
                 var newClient = new Client
                 {
                     Fio = ClientFio,
