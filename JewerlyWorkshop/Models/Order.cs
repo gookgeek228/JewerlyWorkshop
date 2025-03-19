@@ -21,6 +21,10 @@ public partial class Order
 
     public int? Cost { get; set; }
 
+    public string? PaymentStatus { get; set; }
+
+    public DateTime? CompletionDate { get; set; }
+
     public virtual Client? IdClientNavigation { get; set; }
 
     public virtual Jevel? IdJevelNavigation { get; set; }

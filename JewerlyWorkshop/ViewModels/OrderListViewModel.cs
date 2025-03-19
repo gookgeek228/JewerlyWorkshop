@@ -8,16 +8,29 @@ using JewerlyWorkshop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using JewerlyWorkshop.ViewModels;
+using CommunityToolkit.Mvvm.Input;
 
 namespace JewerlyWorkshop.ViewModels
 {
     public partial class OrderListViewModel : ViewModelBase
     {
-        [ObservableProperty] List<Order> orders;
-        [ObservableProperty] List<Order> orders0;
-        [ObservableProperty] string textFind;
-        [ObservableProperty] string selectedSortOrder;
-        [ObservableProperty] string selectedSortParametr;
+        [ObservableProperty]
+        List<Order> orders;
+
+        [ObservableProperty]
+        List<Order> orders0;
+        
+        [ObservableProperty]
+        string textFind;
+        
+        [ObservableProperty]
+        string selectedSortOrder;
+
+        [ObservableProperty]
+        string selectedSortParametr;
+        
+        [ObservableProperty]
+        private Order selectedOrder;
 
         public OrderListViewModel()
         {
@@ -27,6 +40,26 @@ namespace JewerlyWorkshop.ViewModels
                 .Include(o => o.IdJevelNavigation)
                 .ToList();
             orders0 = orders;
+        }
+
+        [RelayCommand]
+        private void EditOrder(Order order)
+        {
+            if (order != null)
+            {
+                // Передача выбранного заказа в EditOrderViewModel
+                var editOrderViewModel = new EditOrderViewModel
+                {
+                    SelectedOrder = order,
+                    Title = $"Редактирование заказа №{order.IdOrder}"
+                };
+
+                // Переход на страницу редактирования
+                MainWindowViewModel.Instance.PageSwitcher = new EditOrderView
+                {
+                    DataContext = editOrderViewModel
+                };
+            }
         }
 
         public void GoBack()

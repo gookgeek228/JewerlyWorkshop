@@ -148,6 +148,9 @@ public partial class JewerlyStoreContext : DbContext
             entity.Property(e => e.IdOrder)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_order");
+            entity.Property(e => e.CompletionDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("completion_date");
             entity.Property(e => e.Cost).HasColumnName("cost");
             entity.Property(e => e.IdClient).HasColumnName("id_client");
             entity.Property(e => e.IdJevel).HasColumnName("id_jevel");
@@ -155,6 +158,9 @@ public partial class JewerlyStoreContext : DbContext
             entity.Property(e => e.OrderDate)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("order_date");
+            entity.Property(e => e.PaymentStatus)
+                .HasColumnType("character varying")
+                .HasColumnName("payment_status");
             entity.Property(e => e.ServiceName)
                 .HasColumnType("character varying")
                 .HasColumnName("service_name");
