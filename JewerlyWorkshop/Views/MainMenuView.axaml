@@ -23,17 +23,20 @@
 			<TextBlock Text="Добро пожаловать" FontSize="20"></TextBlock>
 			<TextBlock Text="{Binding Username}" HorizontalAlignment="Center" FontSize="20"></TextBlock>
 		</StackPanel>
-		
+
 		<StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom">
 			<Button Content="Выйти" Command="{Binding LogOut}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="120" Height="60" CornerRadius="10" HorizontalAlignment="Center" Margin="0,0,0,30"></Button>
 		</StackPanel>
 
-		<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Spacing="20" Margin="0,40,0,0">
-			
+		<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Spacing="20" Margin="0,40,0,0" >
+
 			<Button Content="Заказы" Command="{Binding GoToOrders}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="240" Height="60" CornerRadius="10" HorizontalAlignment="Center"></Button>
 			<Button Content="Мастера" Command="{Binding GoToMasters}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="240" Height="60" CornerRadius="10" HorizontalAlignment="Center"></Button>
 			<TextBlock Text="{Binding Message}" HorizontalAlignment="Center" Foreground="Black" Margin="0,0,0,20"></TextBlock>
+			<Image Source="/Assets/Лого.png" Width="200" Height="200"/>
 		</StackPanel>
+
+
 
 	</Grid>
 </UserControl>

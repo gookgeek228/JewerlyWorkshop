@@ -7,6 +7,49 @@
              x:Class="JewerlyWorkshop.AuthView"
 			 x:DataType="vm:AuthViewModel">
 
+	<UserControl.Styles>
+		<!-- Стили для текстовых блоков -->
+		<Style Selector="TextBlock">
+			<Setter Property="Foreground" Value="#333333"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Margin" Value="0,0,0,5"/>
+		</Style>
+
+		<!-- Стили для текстовых полей -->
+		<Style Selector="TextBox">
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="Foreground" Value="#333333"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="Padding" Value="10"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Height" Value="40"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+
+		<!-- Стили для кнопок -->
+		<Style Selector="Button">
+			<Setter Property="Background" Value="#4CAF50"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="Padding" Value="10"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Height" Value="40"/>
+			<Setter Property="Width" Value="120"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+
+		<!-- Стили для изображения капчи -->
+		<Style Selector="Image">
+			<Setter Property="Margin" Value="0,0,0,10"/>
+			<Setter Property="Width" Value="250"/>
+			<Setter Property="Height" Value="100"/>
+		</Style>	
+	</UserControl.Styles>
+	
 	<Grid>
 
 		<Grid.RowDefinitions>
@@ -17,14 +60,14 @@
 			
 			<TextBlock Text="Авторизация" HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,20"></TextBlock>
 			<TextBlock Margin="0,0,0,5" FontSize="15">Логин</TextBlock>
-			<TextBox Text="{Binding Login}" Watermark="Введите логин" Margin="0,0,0,10" Height="50" VerticalContentAlignment="Center" CornerRadius="10" BorderThickness="2"></TextBox>
+			<TextBox Text="{Binding Login}" Watermark="Введите логин" Margin="0,0,0,10"></TextBox>
 			<TextBlock Margin="0,0,0,5" FontSize="15">Пароль</TextBlock>
-			<TextBox Text="{Binding Password}" Watermark="Введите пароль" Margin="0,0,0,20" Height="50" VerticalContentAlignment="Center" CornerRadius="10" PasswordChar="*" BorderThickness="2"></TextBox>
+			<TextBox Text="{Binding Password}" Watermark="Введите пароль" Margin="0,0,0,20" PasswordChar="*"></TextBox>
 
 			<Image Source="{Binding CaptchaImage}" Width="250" Height="100" Margin="0,0,0,10"/>
 			<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10" Margin="0,0,0,20">
 				<Button Content="Обновить" Command="{Binding GenerateCaptchaCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="CornflowerBlue" Foreground="White" Width="100" Height="40" CornerRadius="10" HorizontalAlignment="Center"></Button>
-				<TextBox Text="{Binding UserInput, Mode=TwoWay}" Watermark="Капча"  Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CornerRadius="10" Width="100" BorderThickness="2"></TextBox>
+				<TextBox Text="{Binding UserInput, Mode=TwoWay}" Watermark="Капча"  Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CornerRadius="10" Width="100"></TextBox>
 			</StackPanel>
 			<TextBlock Text="{Binding Message}" HorizontalAlignment="Center" Foreground="Black" Margin="0,0,0,20"></TextBlock>
 			
