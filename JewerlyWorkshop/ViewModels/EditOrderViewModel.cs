@@ -52,7 +52,7 @@ namespace JewerlyWorkshop.ViewModels
 
 
         [RelayCommand]
-        private void SaveOrder()
+        public void SaveOrder()
         {
             if (SelectedOrder != null)
             {
@@ -62,6 +62,12 @@ namespace JewerlyWorkshop.ViewModels
                 SelectedOrder.OrderDate = OrderDate;
                 SelectedOrder.CompletionDate = CompletionDate;
 
+                if (CompletionDate != null) 
+                {
+                    SelectedOrder.Status = "Завершен";
+                }
+
+                Db.Orders.Update(SelectedOrder);
                 Db.SaveChanges();
 
                 MainWindowViewModel.Instance.PageSwitcher = new OrderListView();
