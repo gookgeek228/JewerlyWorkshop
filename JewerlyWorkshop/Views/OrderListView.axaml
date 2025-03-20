@@ -48,7 +48,7 @@
 			</StackPanel>
 		</StackPanel>
 
-		<ListBox Grid.Row="1" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}">>
+		<ListBox Grid.Row="1" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Grid>
@@ -102,7 +102,7 @@
 						<Button Content="Изменить"
 								Grid.Row="7"
 								Grid.Column="2"
-								Command="{Binding DataContext.EditOrderCommand, ElementName=OrderListControl}"
+								Command="{Binding $parent[UserControl].((vm:OrderListViewModel)DataContext).EditOrder}"
 								CommandParameter="{Binding}"
 								HorizontalContentAlignment="Center"
 								VerticalContentAlignment="Center"

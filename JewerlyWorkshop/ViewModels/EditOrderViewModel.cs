@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JewerlyWorkshop.Models;
 using System;
+using System.Collections.Generic;
 
 namespace JewerlyWorkshop.ViewModels
 {
@@ -25,17 +26,30 @@ namespace JewerlyWorkshop.ViewModels
         [ObservableProperty]
         private DateTime? completionDate;
 
+        [ObservableProperty]
+        private List<string> statusOptions;
+
+        [ObservableProperty]
+        private List<string> paymentStatusOptions;
+
         public EditOrderViewModel()
         {
-            // Инициализация свойств при создании ViewModel
-            if (SelectedOrder != null)
-            {
-                Status = SelectedOrder.Status;
-                PaymentStatus = SelectedOrder.PaymentStatus;
-                OrderDate = SelectedOrder.OrderDate;
-                CompletionDate = SelectedOrder.CompletionDate;
-            }
+            StatusOptions = new List<string> { "В работе", "Завершен" };
+            PaymentStatusOptions = new List<string> { "Оплачен", "Не оплачен" };
         }
+
+        public DateTimeOffset? DateTimeOffset1
+        {
+            get => orderDate.HasValue ? new DateTimeOffset(orderDate.Value) : (DateTimeOffset?)null;
+            set => orderDate = value?.DateTime;
+        }
+
+        public DateTimeOffset? DateTimeOffset2
+        {
+            get => completionDate.HasValue ? new DateTimeOffset(completionDate.Value) : (DateTimeOffset?)null;
+            set => completionDate = value?.DateTime;
+        }
+
 
         [RelayCommand]
         private void SaveOrder()
@@ -48,10 +62,8 @@ namespace JewerlyWorkshop.ViewModels
                 SelectedOrder.OrderDate = OrderDate;
                 SelectedOrder.CompletionDate = CompletionDate;
 
-                // Сохранение изменений в базе данных
                 Db.SaveChanges();
 
-                // Возврат на предыдущую страницу
                 MainWindowViewModel.Instance.PageSwitcher = new OrderListView();
             }
         }

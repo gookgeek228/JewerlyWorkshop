@@ -30,7 +30,7 @@ namespace JewerlyWorkshop.ViewModels
         string selectedSortParametr;
         
         [ObservableProperty]
-        private Order selectedOrder;
+        public Order selectedOrder;
 
         public OrderListViewModel()
         {
@@ -42,8 +42,9 @@ namespace JewerlyWorkshop.ViewModels
             orders0 = orders;
         }
 
+
         [RelayCommand]
-        private void EditOrder(Order order)
+        public void EditOrder(Order order)
         {
             if (order != null)
             {
@@ -51,7 +52,11 @@ namespace JewerlyWorkshop.ViewModels
                 var editOrderViewModel = new EditOrderViewModel
                 {
                     SelectedOrder = order,
-                    Title = $"Редактирование заказа №{order.IdOrder}"
+                    Title = $"Редактирование заказа №{order.IdOrder}",
+                    Status = order.Status,
+                    PaymentStatus = order.PaymentStatus,
+                    OrderDate = order.OrderDate,
+                    CompletionDate = order.CompletionDate,
                 };
 
                 // Переход на страницу редактирования
@@ -61,6 +66,7 @@ namespace JewerlyWorkshop.ViewModels
                 };
             }
         }
+
 
         public void GoBack()
         {
