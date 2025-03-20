@@ -37,7 +37,7 @@
 
 		</StackPanel>
 
-		<ListBox Grid.Row="1" ItemsSource="{Binding Masters}">
+		<ListBox Grid.Row="1" ItemsSource="{Binding Masters}" SelectedItem="{Binding SelectedMaster, Mode=TwoWay}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Grid>
@@ -59,7 +59,7 @@
 						<TextBlock Text="{Binding Fio}" Grid.Row="0" Grid.Column="0" />
 
 						<!-- Номер мастера -->
-						<TextBlock Text="{Binding IdMaster, StringFormat=Номер мастера: {0}}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" />
+						<TextBlock Text="{Binding IdMaster, StringFormat=Номер мастера: {0}}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" />
 
 						<!-- Телефон -->
 						<TextBlock Text="{Binding Phone}" Grid.Row="1" Grid.Column="0" Margin="0,0,0,10" />
@@ -73,6 +73,20 @@
 						<!-- Дата увольнения -->
 						<TextBlock Text="{Binding DismissialDate, StringFormat=Дата увольнения: {0}}" Grid.Row="4" Grid.Column="0" />
 
+						<!-- Переход на страницу редактирования -->
+						<Button Content="Изменить"
+								Grid.Row="4"
+								Grid.Column="1"
+								Command="{Binding $parent[UserControl].((vm:MasterListViewModel)DataContext).EditMaster}"
+								CommandParameter="{Binding}"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								Background="CornflowerBlue"
+								Foreground="White"
+								Width="100"
+								Height="40"
+								CornerRadius="10"
+								HorizontalAlignment="Right"/>
 					</Grid>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
